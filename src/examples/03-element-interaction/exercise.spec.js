@@ -44,9 +44,9 @@ test("should login and list applications", async ({ page }) => {
     await page.waitForLoadState();
 
     // Check page title
-    console.log("Page title is: " + await page.getByRole("heading", {level: 1}).textContent()) // TODO upravit cviceni
+    console.log("Page title is: " + await page.getByRole("heading", {level: 1}).textContent())
 
-    // TODO pridat do cviceni
+    // Check recourds count
     const tableSizeInfo = page.locator("#DataTables_Table_0_info");
     console.log(await tableSizeInfo.textContent());
 
