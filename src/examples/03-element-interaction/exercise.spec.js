@@ -65,7 +65,7 @@ test("should login and list applications", async ({ page }) => {
 
     // Optional: filter the applications table
     await page.locator("input[type='search']").fill("mar");
-    await page.waitForLoadState()
+    await page.waitForLoadState();
 
     const filteredRows = await page
         .locator(".dataTable")

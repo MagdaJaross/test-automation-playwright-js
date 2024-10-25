@@ -61,11 +61,11 @@ test.describe('Applications Page', async () => {
         }
     });
 
-    // it('should open application detail', async () => {
+    // it("should open application detail", async () => {
     //
     //     // vybere třetí přihlášku v tabulce (musí tam samozřejmě být alespoň 3)
     //     const thirdRow = (await ApplicationsPage.getTableRows())[2];
-    //     const [lastName, firstName, secondName] = (await thirdRow.getValues()).name.split(' ');
+    //     const [lastName, firstName, secondName] = (await thirdRow.getValues()).name.split(" ");
     //
     //     // otevře detail přihlášky
     //     const applicationDetailPage = await thirdRow.getInfo();
@@ -73,7 +73,7 @@ test.describe('Applications Page', async () => {
     //     // získá obsah detailu přihlášky
     //     const applicationDetail = await applicationDetailPage.getDetail();
     //
-    //     await expect(applicationDetail).toContainEqual(['Křestní jméno žáka:', [firstName, secondName].join(' ')]);
-    //     await expect(applicationDetail).toContainEqual(['Příjmení žáka:', lastName]);
+    //     await expect(applicationDetail).toContainEqual(["Křestní jméno žáka:", [firstName, secondName].join(" ")]);
+    //     await expect(applicationDetail).toContainEqual(["Příjmení žáka:", lastName]);
     // });
 });

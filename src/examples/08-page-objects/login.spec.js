@@ -50,8 +50,8 @@ test.describe('Login Page', async () => {
 
         await loginPage.login(username, 'invalid');
 
-        await expect(loginPage.toast).toHaveText('Některé pole obsahuje špatně zadanou hodnotu');
-        await expect(loginPage.fieldError).toHaveText('Tyto přihlašovací údaje neodpovídají žadnému záznamu.');
+        await expect(loginPage.toast).toHaveText("Některé pole obsahuje špatně zadanou hodnotu");
+        await expect(loginPage.fieldError).toHaveText("Tyto přihlašovací údaje neodpovídají žadnému záznamu.");
 
         await expect(loginPage.emailField).toBeVisible();
         await expect(loginPage.passwordField).toBeVisible();
