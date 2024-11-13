@@ -34,6 +34,11 @@ npx playwright test --ui
 npx playwright test
 ```
 
+**Run examples:**
+```
+npx playwright test --config=playwright.examples.config.js --ui 
+```
+
 **Generate a report:**
 ```
 npx playwright show-report
