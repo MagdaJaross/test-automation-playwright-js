@@ -3,7 +3,8 @@
  * @type {exports.LoginPage}
  */
 const {AppPage} = require("./app.page");
-exports.LoginPage = class LoginPage extends AppPage {
+
+export class LoginPage extends AppPage {
 
     constructor(page) {
         super(page, "prihlaseni");

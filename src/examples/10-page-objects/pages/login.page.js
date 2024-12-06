@@ -2,7 +2,7 @@
  * Page object describing the login page
  * @type {exports.LoginPage}
  */
-exports.LoginPage = class LoginPage {
+export class LoginPage {
 
     constructor(page) {
         this.page = page;
@@ -10,9 +10,7 @@ exports.LoginPage = class LoginPage {
         this.passwordField = this.page.getByLabel("Heslo");
         this.loginButton = this.page.getByRole("button", { name: "Přihlásit"});
         this.toast = this.page.locator(".toast-message");
-        this.fieldError = this.page.locator(".invalid-feedback");
         this.navbarRight = this.page.locator(".navbar-right");
-        // this.logoutLink = this.page.locator("#logout-link");
         this.usernameDropdown = this.navbarRight.locator("[data-toggle='dropdown']");
     }
 
