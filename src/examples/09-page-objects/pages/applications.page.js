@@ -2,7 +2,8 @@
  * Page object describing the applications page
  */
 const {AppPage} = require("./app.page");
-exports.ApplicationsPage = class ApplicationsPage extends AppPage {
+
+export class ApplicationsPage extends AppPage {
 
     constructor(page) {
         super(page, "admin/prihlasky");

@@ -1,4 +1,4 @@
-exports.AppPage = class AppPage {
+export class AppPage {
 
     constructor(page, url) {
         this.url = url;

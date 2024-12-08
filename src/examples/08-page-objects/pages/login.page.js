@@ -2,7 +2,7 @@
  * Page object describing the login page
  * @type {exports.LoginPage}
  */
-exports.LoginPage = class LoginPage {
+export class LoginPage {
 
     constructor(page) {
         this.page = page;

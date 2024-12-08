@@ -1,5 +1,5 @@
 /**
- * Lesson 7: Code organization: functions - Exercise 1
+ * Lesson 6: Code organization: functions - Exercise 1
  */
 import {username, password, userFullName} from "../../fixtures/fixtures.js"
 import {expect, test} from "@playwright/test";

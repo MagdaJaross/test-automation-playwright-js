@@ -1,7 +1,7 @@
 /**
  * Page object describing the applications page
  */
-exports.ApplicationsPage = class ApplicationsPage {
+export class ApplicationsPage {
 
     constructor(page) {
         this.page = page;

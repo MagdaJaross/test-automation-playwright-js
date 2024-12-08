@@ -1,5 +1,5 @@
 /**
- * Lesson 7: Code organization: functions - Exercise 2
+ * Lesson 6: Code organization: functions - Exercise 2
  */
 import {expect, test} from "@playwright/test";
 import {
@@ -18,6 +18,10 @@ async function login(page) {
     await page.getByLabel("Email").fill(username);
     await page.getByLabel("Heslo").fill(password);
     await page.getByRole("button", { name: "Přihlásit"}).click();
+}
+
+export async function getPageTitle(page) {
+    return await page.getByRole("heading", {level: 1});
 }
 
 async function goToApplicationsPage(page) {
@@ -46,7 +50,7 @@ test.describe("Applications Page", async () => {
 
     test.beforeEach(async ({page}) => {
         await login(page);
-        await test.expect(page).toHaveTitle(pageTitle);
+        await expect(page).toHaveTitle(pageTitle);
         await goToApplicationsPage(page);
         await waitForTableToLoad(page);
     });
