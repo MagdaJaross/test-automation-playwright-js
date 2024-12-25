@@ -1,9 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { generateRandomEmail } from "../fixtures/random";
 const { faker } = require('@faker-js/faker');
-const { selectors } = require('../fixtures/selectors.js');
 const { checkRegistrationForm, fillPassword } = require('../fixtures/utils.js');
-
 
 test('go to the registration form', async ({ page }) => {
     await page.goto('/prihlaseni');
@@ -16,8 +14,9 @@ test('go to the registration form', async ({ page }) => {
 
 test.describe('Registration', () => {
 
-    test.beforeEach( async ({ page }) => {
+    test.beforeEach(async ({ page }) => {
         await page.goto('/registrace');
+        await checkRegistrationForm(page);
     });
 
     //test uses only changed email address for another run (it is enough for a new successful registration)
@@ -27,9 +26,13 @@ test.describe('Registration', () => {
         const emailInput = page.getByLabel('Email');
         const registerButton = page.getByRole('button', { name: 'Zaregistrovat' });
         const heading = page.locator('h1');
+        const randomEmail = generateRandomEmail();
 
         await nameInput.fill('Tomáš Nový');
-        await emailInput.fill(generateRandomEmail());
+        //await expect(nameInput).toHaveText('Tomáš Nový');
+        await emailInput.fill(randomEmail);
+        //await expect(emailInput).toHaveText(randomEmail);
+        console.log(randomEmail);
         await fillPassword(page);
         await registerButton.click();
 
@@ -52,9 +55,11 @@ test.describe('Registration', () => {
 
         const randomName = faker.person.fullName();
         await nameInput.fill(randomName);
+        console.log(randomName);
 
         const randomEmail = faker.internet.email();
         await emailInput.fill(randomEmail);
+        console.log(randomEmail);
 
         await fillPassword(page);
 
@@ -64,7 +69,6 @@ test.describe('Registration', () => {
             .locator('strong');
         await expect(currentNewUserName).toHaveText(randomName);
         await expect(heading).toHaveText('Přihlášky');
-
     });
 
     test("should not register with an existing email", async ({ page }) => {
@@ -75,11 +79,13 @@ test.describe('Registration', () => {
         const registerButton = page.getByRole('button', { name: 'Zaregistrovat' });
         const logoutButton = page.locator('#logout-link');
 
-        var randomName = faker.person.fullName();
+        let randomName = faker.person.fullName();
         await nameInput.fill(randomName);
+        console.log(randomName);
 
         const randomEmail = faker.internet.email();
         await emailInput.fill(randomEmail);
+        console.log(randomEmail);
 
         await fillPassword(page);
 
@@ -93,20 +99,22 @@ test.describe('Registration', () => {
 
         randomName = faker.person.fullName();
         await nameInput.fill(randomName);  //vyplní nově vygenerované jméno
+        console.log(randomName);
         await emailInput.fill(randomEmail);  //použije stejný email jako při registraci výše
+        console.log(randomEmail);
+
         await fillPassword(page);
         await registerButton.click();
 
-
-        await expect(page).toHaveURL(/.*registrace/); //ověří, že je stále na stránce registrace
         const toastMessage = page.locator('.toast-message');
         const fieldError = page.locator('.invalid-feedback').locator('strong');
         //ověří chybové hlášky
+        await expect(toastMessage).toBeVisible();
         await expect(toastMessage).toHaveText("Některé pole obsahuje špatně zadanou hodnotu");
+        await expect(fieldError).toBeVisible();
         await expect(fieldError).toHaveText("Účet s tímto emailem již existuje");
         //await expect(page.getByText('Účet s tímto emailem již')).toBeVisible();
-
-        await checkRegistrationForm(page);
+        await checkRegistrationForm(page); //ověří, že je stále na stránce registrace
     });
 
 
@@ -120,23 +128,24 @@ test.describe('Registration', () => {
 
         const randomName = faker.person.fullName();
         await nameInput.fill(randomName);
+        console.log(randomName);
 
         const randomEmail = faker.internet.email();
         await emailInput.fill(randomEmail);
+        console.log(randomEmail);
 
         const onlyNumbersPassword = '785634';
         await passwordInput.fill(onlyNumbersPassword);
         await controlPasswordInput.fill(onlyNumbersPassword);
         await registerButton.click();
 
-        await expect(page).toHaveURL(/.*registrace/); //ověří, že je stále na stránce registrace
         const toastMessage = page.locator('.toast-message');
         const fieldError = page.locator('.invalid-feedback').locator('strong');
         //ověří chybové hlášky
+        await expect(toastMessage).toBeVisible();
         await expect(toastMessage).toHaveText("Některé pole obsahuje špatně zadanou hodnotu");
+        await expect(fieldError).toBeVisible();
         await expect(fieldError).toHaveText("Heslo musí obsahovat minimálně 6 znaků, velké i malé písmeno a číslici");
-
-        await checkRegistrationForm(page);
-
+        await checkRegistrationForm(page); //ověří, že je stále na stránce registrace
     });
 });

@@ -8,7 +8,7 @@ const { BASE_URL } = process.env;
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
-  testDir: './src/tests/forTeachers',
+  testDir: './src/tests',
   // testDir: './src/examples',
   /* Run tests in files in parallel */
   fullyParallel: false,
