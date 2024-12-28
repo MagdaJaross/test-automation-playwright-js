@@ -109,12 +109,6 @@ module.exports = defineConfig({
       testMatch: /11.*\.spec\.js/,
       use: { ...devices["Desktop Chrome"] },
     },
-
-    {
-      name: "Lesson 12",
-      testMatch: /12.*\.spec\.js/,
-      use: { ...devices["Desktop Chrome"] },
-    },
   ],
 });
 
