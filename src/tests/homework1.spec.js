@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { generateRandomEmail } from "../fixtures/random";
+import { generateRandomEmail } from "../tests/random";
 const { faker } = require('@faker-js/faker');
-const { checkRegistrationForm, fillPassword } = require('../fixtures/utils.js');
+const { checkRegistrationForm, fillPassword } = require('../tests/utils.js');
 
 test('go to the registration form', async ({ page }) => {
     await page.goto('/prihlaseni');
@@ -10,7 +10,6 @@ test('go to the registration form', async ({ page }) => {
     await expect(page.locator('h1')).toHaveText('Registrace');
     await checkRegistrationForm(page);
 });
-
 
 test.describe('Registration', () => {
 
@@ -29,7 +28,7 @@ test.describe('Registration', () => {
         const randomEmail = generateRandomEmail();
 
         await nameInput.fill('Tomáš Nový');
-        //await expect(nameInput).toHaveText('Tomáš Nový');
+        //await expect(page.locator('input#name')).toHaveText('Tomáš Nový');
         await emailInput.fill(randomEmail);
         //await expect(emailInput).toHaveText(randomEmail);
         console.log(randomEmail);
@@ -41,9 +40,7 @@ test.describe('Registration', () => {
             .locator('strong');
         await expect(currentNewUserName).toHaveText('Tomáš Nový');
         await expect(heading).toHaveText('Přihlášky');
-
     });
-
 
     //test uses different fake names and email addresses for each run
     test("valid registration 2", async ({ page }) => {
@@ -116,7 +113,6 @@ test.describe('Registration', () => {
         //await expect(page.getByText('Účet s tímto emailem již')).toBeVisible();
         await checkRegistrationForm(page); //ověří, že je stále na stránce registrace
     });
-
 
     test("should not register with non-valid password (only numbers)", async ({ page }) => {
 
